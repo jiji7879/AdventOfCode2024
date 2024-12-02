@@ -10,6 +10,7 @@ def makeLists():
         numberSplit = line.split()  # splits into left and right
         leftList.append(int(numberSplit[0]))
         rightList.append(int(numberSplit[1]))
+    f.close()
 
     return leftList, rightList
 
@@ -30,6 +31,7 @@ def part2(leftList, rightList):
         total += i * j
     return total
 
-leftList, rightList = makeLists()
-print(part1(leftList, rightList))
-print(part2(leftList, rightList))
+if __name__ == "__main__":
+    leftList, rightList = makeLists()
+    print(part1(leftList, rightList))
+    print(part2(leftList, rightList))
