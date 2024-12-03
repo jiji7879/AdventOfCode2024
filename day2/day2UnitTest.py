@@ -6,7 +6,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_part_1(self):
         lists = day2.makeLists("day2SampleInput.txt")
-        self.assertEqual(day2.part1(lists), 2)  # add assertion here
+        self.assertEqual(day2.part1(lists), 2)
 
     def test_part_2(self):
         lists = day2.makeLists("day2SampleInput.txt")

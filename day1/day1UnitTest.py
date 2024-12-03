@@ -12,7 +12,7 @@ class TestPart1(unittest.TestCase):
 
     def test_part_1(self):
         leftList, rightList = makeSampleLists()
-        self.assertEqual(day1.part1(leftList, rightList), 11)  # add assertion here
+        self.assertEqual(day1.part1(leftList, rightList), 11)
 
     def test_part_2(self):
         leftList, rightList = makeSampleLists()
