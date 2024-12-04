@@ -12,16 +12,16 @@ def wordSearch(array: list, searchString: str):
         for j in range(numColumns - (len(searchString) - 1)):
             created_string = ""
             for k in range(0, len(searchString)):
-                created_string += array[i][j+k]
+                created_string += array[i][j + k]
             if created_string == searchString or created_string == searchString[::-1]:
                 counter += 1
 
     # vertical
-    for i in range(numColumns):
-        for j in range(numRows - (len(searchString) - 1)):
+    for i in range(numRows - (len(searchString) - 1)):
+        for j in range(numColumns):
             created_string = ""
             for k in range(0, len(searchString)):
-                created_string += array[j + k][i]
+                created_string += array[i + k][j]
             if created_string == searchString or created_string == searchString[::-1]:
                 counter += 1
 
@@ -30,7 +30,7 @@ def wordSearch(array: list, searchString: str):
         for j in range(numColumns - (len(searchString) - 1)):
             created_string = ""
             for k in range(0, len(searchString)):
-                created_string += array[i + k][j+k]
+                created_string += array[i + k][j + k]
             if created_string == searchString or created_string == searchString[::-1]:
                 counter += 1
 
