@@ -12,11 +12,11 @@ class TestPart1(unittest.TestCase):
 
     def test_part_1(self):
         leftList, rightList = makeSampleLists()
-        self.assertEqual(day1.part1(leftList, rightList), 11)
+        self.assertEqual(11, day1.part1(leftList, rightList))
 
     def test_part_2(self):
         leftList, rightList = makeSampleLists()
-        self.assertEqual(day1.part2(leftList, rightList), 31)
+        self.assertEqual(31, day1.part2(leftList, rightList))
 
 if __name__ == '__main__':
     unittest.main()

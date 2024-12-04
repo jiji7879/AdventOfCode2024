@@ -14,7 +14,7 @@ def makeLists():
 
     return leftList, rightList
 
-def part1(leftList, rightList):
+def part1(leftList: list, rightList: list):
     leftList.sort()
     rightList.sort()
 
@@ -24,7 +24,7 @@ def part1(leftList, rightList):
     return total
 
 #seems inefficient for larger sets, but gets the job done
-def part2(leftList, rightList):
+def part2(leftList: list, rightList: list):
     total = 0
     for i in leftList:
         j = rightList.count(i)
