@@ -76,8 +76,9 @@ class Guard:
             self.escaped = True
         elif (self.map[nextXPosition][nextYPosition] == '#') or (phantom == (nextXPosition, nextYPosition)):
             self.direction = clockwiseTurn(self.direction)
-            # we cannot turn from the same position twice unless we're turning again
-            # we also need a failsafe if we're trapped in all sides
+            # we cannot turn from the same position twice unless turning again or we're straight up trapped
+            # we will usually reach the case where it's one or the other
+            # the exception is if we're trapped in all sides
             if self.position in self.turnedCells and (self.turnedCells[-1] != self.position or self.turnedCells[-3::] == [self.position, self.position, self.position]):
                     self.trapped = True
             else:
