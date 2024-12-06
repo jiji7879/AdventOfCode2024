@@ -102,7 +102,7 @@ class Guard:
             self.move(self.phantom)
         return True if self.escaped else False
 
-    def findLoops(self):
+    def findLoops(self) -> bool:
         self.reset()
         while not self.escaped and not self.trapped:
             currentPosition = self.position
