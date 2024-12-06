@@ -3,7 +3,7 @@ import wordSearch
 XMAS_STRING = "XMAS"
 MAS_STRING = "MAS"
 
-def readFileAsArrayOfCharacters(filename: str):
+def readFileAsArrayOfCharacters(filename: str) -> list:
     f = open(filename, "r")
     arrayOfCharacters = []
     for string in f.readlines():
@@ -11,11 +11,11 @@ def readFileAsArrayOfCharacters(filename: str):
     f.close()
     return arrayOfCharacters
 
-def part1(filename: str):
+def part1(filename: str) -> int:
     array = readFileAsArrayOfCharacters(filename)
     return wordSearch.wordSearch(array, XMAS_STRING)
 
-def part2(filename: str):
+def part2(filename: str) -> int:
     array = readFileAsArrayOfCharacters(filename)
 
     counter = 0

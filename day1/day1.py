@@ -1,7 +1,7 @@
 #From the Advent of Code website for testing
 
 
-def makeLists():
+def makeLists() -> (list, list):
     f = open("day1Input.txt", "r")
     leftList = []
     rightList = []
@@ -14,7 +14,7 @@ def makeLists():
 
     return leftList, rightList
 
-def part1(leftList: list, rightList: list):
+def part1(leftList: list, rightList: list) -> int:
     leftList.sort()
     rightList.sort()
 
@@ -24,7 +24,7 @@ def part1(leftList: list, rightList: list):
     return total
 
 #seems inefficient for larger sets, but gets the job done
-def part2(leftList: list, rightList: list):
+def part2(leftList: list, rightList: list) -> int:
     total = 0
     for i in leftList:
         j = rightList.count(i)

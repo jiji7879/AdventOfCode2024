@@ -1,4 +1,4 @@
-def makeLists(textfile: str):
+def makeLists(textfile: str) -> list:
     f = open(textfile, "r")
     lists = f.readlines()
     newList = []
@@ -13,14 +13,14 @@ def makeLists(textfile: str):
     return newList
 
 #takes in an input of a list of lists (2D list)
-def part1(lists: list):
+def part1(lists: list) -> int:
     safeCount = 0
     for line in lists:
         safeCount += isLineSafePart1(line)
     return safeCount
 
 #returns 1 if safe, 0 if unsafe
-def isLineSafePart1(line: list):
+def isLineSafePart1(line: list) -> int:
     if len(line) < 2:
         return 0
     match isIncreasingOrDecreasing(line[0], line[1]):
@@ -33,7 +33,7 @@ def isLineSafePart1(line: list):
             return 0
 
 #returns 1 if safe, 0 if unsafe
-def isIncreasingLineSafe(line: list, minDiff: int, maxDiff: int):
+def isIncreasingLineSafe(line: list, minDiff: int, maxDiff: int) -> int:
     for index in range(len(line) - 1):
         difference = line[index + 1] - line[index]
         if difference > maxDiff or difference < minDiff:
@@ -41,7 +41,7 @@ def isIncreasingLineSafe(line: list, minDiff: int, maxDiff: int):
     return 1
 
 #returns 1 if increasing, -1 if decreasing, and 0 otherwise
-def isIncreasingOrDecreasing(left: int, right: int):
+def isIncreasingOrDecreasing(left: int, right: int) -> int:
     if left < right:
         return 1
     elif left > right:
@@ -50,14 +50,14 @@ def isIncreasingOrDecreasing(left: int, right: int):
         return 0
 
 
-def part2(lists: list):
+def part2(lists: list) -> int:
     safeCount = 0
     for line in lists:
         safeCount += isLineSafePart2(line)
     return safeCount
 
 #returns 1 if safe, 0 if unsafe
-def isLineSafePart2(line: list):
+def isLineSafePart2(line: list) -> int:
     if len(line) < 2:
         return 0
     # should now get a general trend
@@ -71,7 +71,7 @@ def isLineSafePart2(line: list):
             return 0
 
 #returns 1 if safe, 0 if unsafe
-def isIncreasingLineSafeWithOneBadLevel(line: list, minDiff: int, maxDiff: int):
+def isIncreasingLineSafeWithOneBadLevel(line: list, minDiff: int, maxDiff: int) -> int:
     safeOrUnsafe = []
 
     # compare every number in between

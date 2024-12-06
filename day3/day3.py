@@ -9,7 +9,7 @@ MUL_REGEX = r"mul\((\d{1,3}),(\d{1,3})\)"
 # fourth is the possible "don't()"
 MUL_DO_DONT_REGEX = r"mul\((\d{1,3}),(\d{1,3})\)|(do\(\))|(don\'t\(\))"
 
-def grabTextFromFile(textfile: str):
+def grabTextFromFile(textfile: str) -> str:
     f = open(textfile, "r")
     bigString = ""
     lists = f.readlines()
@@ -19,14 +19,14 @@ def grabTextFromFile(textfile: str):
 
     return bigString
 
-def part1(string: str):
+def part1(string: str) -> int:
     matches = re.findall(MUL_REGEX, string)
     total = 0
     for pair in matches:
         total += int(pair[0]) * int(pair[1])
     return total
 
-def part2(string: str):
+def part2(string: str) -> int:
     matches = re.findall(MUL_DO_DONT_REGEX, string)
     is_dont = False
     total = 0

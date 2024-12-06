@@ -1,4 +1,4 @@
-def wordSearch(array: list, searchString: str):
+def wordSearch(array: list, searchString: str) -> int:
 
     counter = 0
     numRows = len(array)

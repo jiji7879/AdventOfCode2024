@@ -2,7 +2,7 @@ import re
 
 RULE_REGEX = "(\d+)\|(\d+)"
 
-def readInput(filename: str):
+def readInput(filename: str) -> (dict, list):
     dictOfBadPairings = {}
     listOfPageOrderings = []
     f = open(filename, "r")
@@ -23,14 +23,14 @@ def readInput(filename: str):
     f.close()
     return dictOfBadPairings, listOfPageOrderings
 
-def addBadPairing(dictOfBadPairings: dict, left: int, right: int):
+def addBadPairing(dictOfBadPairings: dict, left: int, right: int) -> dict:
     if right in dictOfBadPairings:
         dictOfBadPairings[right].append(left)
     else:
         dictOfBadPairings[right] = [left]
     return dictOfBadPairings
 
-def isGoodPageOrdering(dictOfBadPairings: dict, rule: list):
+def isGoodPageOrdering(dictOfBadPairings: dict, rule: list) -> bool:
     for i in range(len(rule)):
         if rule[i] not in dictOfBadPairings:
             continue
@@ -39,7 +39,7 @@ def isGoodPageOrdering(dictOfBadPairings: dict, rule: list):
                 return False
     return True
 
-def fixPageOrdering(dictOfBadPairings: dict, rule: list):
+def fixPageOrdering(dictOfBadPairings: dict, rule: list) -> list:
     fixed = False
     while not fixed:
         didStep = False
@@ -57,7 +57,7 @@ def fixPageOrdering(dictOfBadPairings: dict, rule: list):
     return rule
 
 
-def part1(filename: str):
+def part1(filename: str) -> int:
     dictOfBadPairings, listOfRules = readInput(filename)
     sumOfMiddlePages = 0
     for rule in listOfRules:
@@ -66,7 +66,7 @@ def part1(filename: str):
             sumOfMiddlePages += rule[len(rule)//2]
     return sumOfMiddlePages
 
-def part2(filename: str):
+def part2(filename: str) -> int:
     dictOfBadPairings, listOfRules = readInput(filename)
     sumOfMiddlePages = 0
     for rule in listOfRules:
