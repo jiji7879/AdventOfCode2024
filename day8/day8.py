@@ -28,32 +28,17 @@ def findAntinodes1(boardOfCharacters: list, dictOfFrequencies: dict) -> int:
     for value in dictOfFrequencies.values():
         for i in range(len(value)):
             for j in range(i+1, len(value)):
-                try:
-                    #first value is value[j], second value is value[i]
-                    difference1 = (value[i][0] - value[j][0], value[i][1] - value[j][1])
-                    # checks whether the coordinate is in the board
-                    newXValue = value[i][0] + difference1[0]
-                    newYValue = value[i][1] + difference1[1]
-                    if newXValue >= 0 and newYValue >= 0:
-                        _ = boardOfCharacters[newXValue][newYValue]
-                        #print(newXValue, newYValue)
-                        antinodes.add((newXValue, newYValue))
-                except:
-                    pass
+                difference = (value[i][0] - value[j][0], value[i][1] - value[j][1])
 
-                # do the same but in the opposite direction
-                try:
-                    # first value is value[i], second value is value[j]
-                    difference1 = (value[j][0] - value[i][0], value[j][1] - value[i][1])
-                    _ = boardOfCharacters[value[j][0] + difference1[0]][value[j][1] + difference1[1]]
-                    newXValue = value[j][0] + difference1[0]
-                    newYValue = value[j][1] + difference1[1]
-                    if newXValue >= 0 and newYValue >= 0:
-                        _ = boardOfCharacters[newXValue][newYValue]
-                        #print(newXValue, newYValue)
-                        antinodes.add((newXValue, newYValue))
-                except:
-                    pass
+                newXValue = value[i][0] + difference[0]
+                newYValue = value[i][1] + difference[1]
+                if 0 <= newXValue < len(boardOfCharacters) and 0 <= newYValue < len(boardOfCharacters[0]):
+                    antinodes.add((newXValue, newYValue))
+
+                newXValue = value[j][0] - difference[0]
+                newYValue = value[j][1] - difference[1]
+                if 0 <= newXValue < len(boardOfCharacters) and 0 <= newYValue < len(boardOfCharacters[0]):
+                    antinodes.add((newXValue, newYValue))
     return len(antinodes)
 
 def findAntinodes2(boardOfCharacters: list, dictOfFrequencies: dict) -> int:
@@ -61,45 +46,26 @@ def findAntinodes2(boardOfCharacters: list, dictOfFrequencies: dict) -> int:
     for value in dictOfFrequencies.values():
         for i in range(len(value)):
             for j in range(i+1, len(value)):
-                antinodes.add(value[i])
-                antinodes.add(value[j])
-                try:
-                    #first value is value[j], second value is value[i]
-                    difference1 = (value[i][0] - value[j][0], value[i][1] - value[j][1])
-                    newXValue = value[i][0]
-                    newYValue = value[i][1]
-                    pleaseBreak = False
-                    while not pleaseBreak:
-                        newXValue = newXValue + difference1[0]
-                        newYValue = newYValue + difference1[1]
-                        if newXValue >= 0 and newYValue >= 0:
-                            _ = boardOfCharacters[newXValue][newYValue]
-                            #print(newXValue, newYValue)
-                            antinodes.add((newXValue, newYValue))
-                        else:
-                            pleaseBreak = True
-                except:
-                    pass
+                difference = (value[i][0] - value[j][0], value[i][1] - value[j][1])
 
-                # do the same but in the opposite direction
-                try:
-                    # first value is value[i], second value is value[j]
-                    difference1 = (value[j][0] - value[i][0], value[j][1] - value[i][1])
-                    _ = boardOfCharacters[value[j][0] + difference1[0]][value[j][1] + difference1[1]]
-                    newXValue = value[j][0]
-                    newYValue = value[j][1]
-                    pleaseBreak = False
-                    while not pleaseBreak:
-                        newXValue = newXValue + difference1[0]
-                        newYValue = newYValue + difference1[1]
-                        if newXValue >= 0 and newYValue >= 0:
-                            _ = boardOfCharacters[newXValue][newYValue]
-                            # print(newXValue, newYValue)
-                            antinodes.add((newXValue, newYValue))
-                        else:
-                            pleaseBreak = True
-                except:
-                    pass
+                i1 = 0
+                newXValue = value[i][0] + i1 * difference[0]
+                newYValue = value[i][1] + i1 * difference[1]
+                while 0 <= newXValue < len(boardOfCharacters) and 0 <= newYValue < len(boardOfCharacters[0]):
+                    antinodes.add((newXValue, newYValue))
+                    i1 += 1
+                    newXValue = value[i][0] + i1 * difference[0]
+                    newYValue = value[i][1] + i1 * difference[1]
+
+                j1 = 0
+                newXValue = value[j][0] - j1 * difference[0]
+                newYValue = value[j][1] - j1 * difference[1]
+                while 0 <= newXValue < len(boardOfCharacters) and 0 <= newYValue < len(boardOfCharacters[0]):
+                    antinodes.add((newXValue, newYValue))
+                    j1 += 1
+                    newXValue = value[j][0] - j1 * difference[0]
+                    newYValue = value[j][1] - j1 * difference[1]
+
     return len(antinodes)
 
 def part1(filename: str) -> int:
