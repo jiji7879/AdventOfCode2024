@@ -47,6 +47,8 @@ def part2Checksum(data: str, dataIdBlocks: list) -> int:
             while dataBlock > 0:
                 dataFoundForBlock = False
                 for j in range(len(dataIdBlocks)):
+                    if dataBlock == 0:
+                        break
                     if 1 <= dataIdBlocks[j] <= dataBlock:
                         for _ in range(dataIdBlocks[j]):
                             checksum += position * j
@@ -63,6 +65,8 @@ def part2Checksum(data: str, dataIdBlocks: list) -> int:
             while dataBlock > 0:
                 dataFoundForBlock = False
                 for j in range(1, len(dataIdBlocks)+1):
+                    if dataBlock == 0:
+                        break
                     if 1 <= dataIdBlocks[-j] <= dataBlock:
                         for _ in range(dataIdBlocks[-j]):
                             checksum += position * (len(dataIdBlocks) - j)
