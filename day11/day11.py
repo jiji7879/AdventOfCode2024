@@ -1,10 +1,5 @@
 import functools
-import math
-
-def temp_log_10(number: int) -> float:
-    if number <= 0:
-        return -1
-    return math.log10(number)
+from collections import defaultdict
 
 def number_of_digits(number: int) -> int:
     count = 0
@@ -55,6 +50,70 @@ def part2(initialList: list, times: int) -> int:
         count += blink_action_count(num, times)
     return count
 
+def part2b(initialList: list, times: int) -> int:
+    rock_count = {}
+    for num in initialList:
+        if num in rock_count:
+            rock_count[num] += 1
+        else:
+            rock_count[num] = 1
+    for j in range(times):
+        #print(j)
+        new_rock_count = {}
+        for num in rock_count:
+            if num == 0:
+                if 1 in new_rock_count:
+                    new_rock_count[1] += rock_count[num]
+                else:
+                    new_rock_count[1] = rock_count[num]
+                continue
+            if len(str(num)) % 2 == 0:
+                firstPart = int(str(num)[:len(str(num)) // 2])
+                lastPart = int(str(num)[len(str(num)) // 2:])
+                if firstPart in new_rock_count:
+                    new_rock_count[firstPart] += rock_count[num]
+                else:
+                    new_rock_count[firstPart] = rock_count[num]
+                if lastPart in new_rock_count:
+                    new_rock_count[lastPart] += rock_count[num]
+                else:
+                    new_rock_count[lastPart] = rock_count[num]
+                continue
+            if num * 2024 in new_rock_count:
+                new_rock_count[num * 2024] += rock_count[num]
+            else:
+                new_rock_count[num * 2024] = rock_count[num]
+        rock_count = new_rock_count
+    return sum(rock_count.values())
+
+def part2c(initialList: list, times: int) -> int:
+    rock_count = defaultdict(int)
+    for num in initialList:
+        if num in rock_count:
+            rock_count[num] += 1
+        else:
+            rock_count[num] = 1
+    for j in range(times):
+        # print(j)
+        new_rock_count = defaultdict(int)
+        for num in rock_count:
+            if num == 0:
+                new_rock_count[1] += rock_count[num]
+                continue
+            if len(str(num)) % 2 == 0:
+                firstPart = int(str(num)[:len(str(num)) // 2])
+                lastPart = int(str(num)[len(str(num)) // 2:])
+                new_rock_count[firstPart] += rock_count[num]
+                new_rock_count[lastPart] += rock_count[num]
+                continue
+            new_rock_count[num * 2024] += rock_count[num]
+        rock_count = new_rock_count
+    return sum(rock_count.values())
+
 if __name__ == "__main__":
     print(part2([4, 4841539, 66, 5279, 49207, 134, 609568, 0], 25))
     print(part2([4, 4841539, 66, 5279, 49207, 134, 609568, 0], 75))
+    print(part2b([4, 4841539, 66, 5279, 49207, 134, 609568, 0], 25))
+    print(part2b([4, 4841539, 66, 5279, 49207, 134, 609568, 0], 75))
+    print(part2c([4, 4841539, 66, 5279, 49207, 134, 609568, 0], 25))
+    print(part2c([4, 4841539, 66, 5279, 49207, 134, 609568, 0], 75))
