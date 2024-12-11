@@ -55,7 +55,6 @@ def part2(initialList: list, times: int) -> int:
         count += blink_action_count(num, times)
     return count
 
-
 if __name__ == "__main__":
     print(part2([4, 4841539, 66, 5279, 49207, 134, 609568, 0], 25))
     print(part2([4, 4841539, 66, 5279, 49207, 134, 609568, 0], 75))
