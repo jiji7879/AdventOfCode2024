@@ -61,7 +61,7 @@ def move(robotPositions: list, robotVelocities: list, boardWidth: int, boardHeig
     return finalRobotPositions
 
 #note that it will cycle through after boardWidth * boardHeight number of moves
-def part2(filename: str, boardWidth: int, boardHeight: int, numMoves: int) -> int:
+def part2(filename: str, boardWidth: int, boardHeight: int, numMoves: int):
     robotPositions, robotVelocities = readFileAsRobots(filename)
 
     for imageNumber in range(max(boardWidth * boardHeight, numMoves)):
