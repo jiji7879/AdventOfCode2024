@@ -9,7 +9,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(10092, day15.part1("day15SampleInput2.txt"))
 
     def test_part_two(self):
-        self.assertEqual(9021, day15.part1("day15SampleInput2.txt"))
+        self.assertEqual(9021, day15.part2("day15SampleInput2.txt"))
 
 
 if __name__ == '__main__':
