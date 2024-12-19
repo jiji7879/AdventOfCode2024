@@ -70,7 +70,7 @@ def recreateDictOfPatterns(patternTuples: tuple) -> dict:
 
 
 @functools.lru_cache(None)
-def checkGoal2(patternTuples: tuple, goal: str):
+def checkGoal2(patternTuples: tuple, goal: str) -> int:
     dictOfPatterns = recreateDictOfPatterns(patternTuples)
     if goal == "" or goal[0] not in dictOfPatterns:
         return 0
