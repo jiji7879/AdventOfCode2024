@@ -2,7 +2,7 @@ import math
 
 
 # reusing a lot of day 16 code
-def readMazeInputs(filename: str):
+def readMazeInputs(filename: str) -> list:
     f = open(filename, "r")
     walls = []
     # we assume the input is absolutely correct
@@ -15,7 +15,7 @@ def readMazeInputs(filename: str):
     return walls
 
 
-def findNextMoves(startingCoordinate: (int, int), currentScore: int, walls: list, boardSize: (int, int)):
+def findNextMoves(startingCoordinate: (int, int), currentScore: int, walls: list, boardSize: (int, int)) -> list:
     listOfValidMoves = []
     north = (startingCoordinate[0] - 1, startingCoordinate[1])
     if north not in walls and 0 <= startingCoordinate[0] - 1 <= boardSize[0]:
